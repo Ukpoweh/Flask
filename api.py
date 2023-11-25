@@ -55,17 +55,21 @@ def predict():
 
         # Label encode categorical features
         labeled_categories = encoder.fit_transform(features["categorical_features"])
-        labeled_categories = np.array([labeled_categories]).reshape(1, -1)
+        labeled_categories = np.array(labeled_categories).reshape(1, -1)
         
-        #scaling numerical features
-        features_scaled = scaler.transform(np.array(features["numeric_features"]).reshape(1, -1))
 
-        # Concatenate encoded and scaled features
-        processed_features = np.concatenate([labeled_categories, features_scaled], axis=1)
+        numerical_features = np.array(features["numeric_features"]).reshape(1,-1)
+        
+
+        # Concatenate numeric and categorical features
+        processed_features = np.concatenate([labeled_categories, numerical_features], axis=1)
+
+        #scaling the input data
+        features_scaled = scaler.transform(processed_features)
 
 
         # Make predictions using the trained model
-        predictions = model.predict(processed_features)
+        predictions = model.predict(features_scaled)
 
         predicted_class = int(predictions[0])
 
