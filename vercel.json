@@ -2,15 +2,15 @@
     "version":2,
     "builds": [
         {
-            "src": "../api/api.py",
+            "src": "api.py",
             "use": "@vercel/python"
         
         }
     ],
     "routes": [
         {
-            "src": "/predict",
-            "dest": "../api/api.py"
+            "src": "/(.*)",
+            "dest": "/api.py"
         }
     ]
 }
