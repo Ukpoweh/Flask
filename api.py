@@ -19,7 +19,6 @@ def predict():
     - features (dict): Dictionary containing 'categorical_features' and 'numeric_features'.
 
         categorical_features:
-        season (planting season)
         label (crop)
         location (country)
 
